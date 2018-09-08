@@ -1,24 +1,19 @@
 $(document).ready(function() {
     console.log('Code from main');
-    var s = Snap("#svg");
-    var background = s.rect(0,0,620,300)
+    let s = Snap("#svg");
+    let background = s.rect(0,0,620,300);
 // Circle with 80px radius
-    var circle = s.circle(90, 120, 80);
+    let circle = s.circle(90, 120, 80);
 // Square with 160px side width
-    var square = s.rect(210, 40, 160, 160);
+    let square = s.rect(210, 40, 160, 160);
 // Ellipse with 80px vertical radius and 50px horizontal radius
-    var ellipse = s.ellipse(460, 120, 80, 50);
-
-
-    var g = s.gradient("l(0, 1, 0, 0)#f00-#f90-#fff");
-
-    var f = s.filter(Snap.filter.shadow(5,10,.3));
-
+    let ellipse = s.ellipse(460, 120, 80, 50);
+    let g = s.gradient("l(0, 1, 0, 0)#f00-#f90-#fff");
+    let f = s.filter(Snap.filter.shadow(5,10,.3));
 
     background.attr({
         fill: g
     });
-
 
     circle.attr({
         fill: 'coral',
@@ -44,9 +39,7 @@ $(document).ready(function() {
         filter: f
     });
 
-    var square_bbox = square.getBBox();
-    var circle_bbox = circle.getBBox();
-    var ellipse_bbox = ellipse.getBBox();
+    let square_bbox = square.getBBox();
 
     function circ_jump () {
         circle.stop().animate(
