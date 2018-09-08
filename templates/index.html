@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Some Dogs{% endblock %}
+
+{% block content %}
+<table>
+    <tr>
+        <th>Dog</th>
+    </tr>
+    {% for dog in dog_list  %}
+    <tr>
+        <td> <a href="{% url 'detail' dog.id %}">{{ dog.name }}</a></td>
+    </tr>
+    {%  endfor %}
+</table>
+{% endblock %}
