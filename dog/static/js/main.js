@@ -7,10 +7,13 @@ $(document).ready(function() {
 // Square with 160px side width
     var square = s.rect(210, 40, 160, 160);
 // Ellipse with 80px vertical radius and 50px horizontal radius
-    var ellipse = s.ellipse(460, 120, 50, 80);
+    var ellipse = s.ellipse(460, 120, 80, 50);
 
 
-    var g = s.gradient("l(0, 0, 1, 1)#000-#f00-#fff");
+    var g = s.gradient("l(0, 1, 0, 0)#f00-#f90-#fff");
+
+    var f = s.filter(Snap.filter.shadow(5,10,.3));
+
 
     background.attr({
         fill: g
@@ -21,21 +24,24 @@ $(document).ready(function() {
         fill: 'coral',
         stroke: 'coral',
         strokeOpacity: .3,
-        strokeWidth: 10
+        strokeWidth: 10,
+        filter: f
     });
 
     square.attr({
         fill: 'darkblue',
         stroke: 'darkblue',
         strokeOpacity: .3,
-        strokeWidth: 10
+        strokeWidth: 10,
+        filter: f
     });
 
     ellipse.attr({
         fill: 'mediumturquoise',
         stroke: 'mediumturquoise',
         strokeOpacity: .2,
-        strokeWidth: 10
+        strokeWidth: 10,
+        filter: f
     });
 
     var square_bbox = square.getBBox();
