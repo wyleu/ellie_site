@@ -22,25 +22,25 @@ $(document).ready(function() {
 
     circle.attr({
         fill: 'coral',
-        stroke: 'coral',
+        stroke: 'black',
         strokeOpacity: .3,
-        strokeWidth: 10,
+        strokeWidth: 1,
         filter: f
     });
 
     square.attr({
-        fill: 'darkblue',
-        stroke: 'darkblue',
+        fill: 'darkorange',
+        stroke: 'black',
         strokeOpacity: .3,
-        strokeWidth: 10,
+        strokeWidth: 1,
         filter: f
     });
 
     ellipse.attr({
         fill: 'mediumturquoise',
-        stroke: 'mediumturquoise',
+        stroke: 'black',
         strokeOpacity: .2,
-        strokeWidth: 10,
+        strokeWidth: 1,
         filter: f
     });
 
@@ -49,24 +49,45 @@ $(document).ready(function() {
     var ellipse_bbox = ellipse.getBBox();
 
     function circ_jump () {
-            circle.stop().animate({transform: 't0,-50'}, 500, mina.backout, function () {
-                circle.animate({transform: 't0,0'}, 500, mina.backin);
-            });
-        }
+        circle.stop().animate(
+            {transform: 't0,-50'},
+            500,
+            mina.backout,
+            function (){
+                circle.animate(
+                    {transform: 't0,0'},
+                    500,
+                    mina.backin);
+            }
+        );
+    }
 
-        function sqr_rotate(){
-            square.transform('');
-            square.animate({ transform: "r180," + square_bbox.cx + ',' + square_bbox.cy}, 1500, mina.bounce);
-        }
+    function sqr_rotate(){
+        square.transform('');
+        square.animate(
+            {transform: "r180," + square_bbox.cx + ',' + square_bbox.cy},
+            1500,
+            mina.bounce
+        );
+    }
 
-        function tri_scale () {
-            ellipse.transform('');
-            ellipse.stop().animate({transform: 's.5,.5'}, 300, mina.easeout, function() {
-                ellipse.stop().animate({transform: 's1,1'}, 700, mina.elastic);
-            });
-        }
-        circle.mouseover(circ_jump);
-        square.mouseover(sqr_rotate);
-        ellipse.mouseover(tri_scale);
+    function tri_scale () {
+        ellipse.transform('');
+        ellipse.stop().animate(
+            {transform: 's.5,.5'},
+            300,
+            mina.easeout,
+            function() {
+                ellipse.stop().animate(
+                    {transform: 's1,1'},
+                    700,
+                    mina.elastic
+                );
+            }
+        );
+    }
+    circle.mouseover(circ_jump);
+    square.mouseover(sqr_rotate);
+    ellipse.mouseover(tri_scale);
 
 });
