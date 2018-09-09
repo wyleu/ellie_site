@@ -25,7 +25,11 @@ SECRET_KEY = 'zxom%t-*d)z6#t7^(6lu7&k%!f2&v4hs)#5_$@zka@4!df-*%w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['zynthian-nord.local','192.168.1.20',]
+ALLOWED_HOSTS = [
+    'zynthian-nord.local',
+    '192.168.1.20',
+    'raspberrypi.local'
+]
 
 
 # Application definition
@@ -39,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dog',
     'things',
+    'channels',
+    'chat'
 ]
 
 MIDDLEWARE = [
@@ -122,5 +128,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/var/www/static'
+
+ASGI_APPLICATION = "ellie_site.routing.application"
 
 
