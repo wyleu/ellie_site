@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    console.log('Code from main');
+    console.log('Code from cup-animation');
 
     let svg = document.getElementById("cups");
     let s = Snap(svg);
