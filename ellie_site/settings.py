@@ -131,4 +131,13 @@ STATIC_ROOT = '/var/www/static'
 
 ASGI_APPLICATION = "ellie_site.routing.application"
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
 
