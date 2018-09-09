@@ -11,6 +11,8 @@ $(document).ready(function() {
     let g = s.gradient("l(0, 1, 0, 0)#f00-#f90-#fff");
     let f = s.filter(Snap.filter.shadow(5,10,.3));
 
+    let selectedElement = false;
+
     background.attr({
         fill: g
     });
@@ -79,8 +81,33 @@ $(document).ready(function() {
             }
         );
     }
-    circle.mouseover(circ_jump);
-    square.mouseover(sqr_rotate);
-    ellipse.mouseover(tri_scale);
+    // circle.mouseover(circ_jump);
+    // square.mouseover(sqr_rotate);
+    // ellipse.mouseover(tri_scale);
+
+    function makeDraggable(evt) {
+
+        square.drag(drag, startDrag, endDrag);
+        // square.mousemove(drag);
+        // square.mouseup(endDrag);
+        //square.mouseleave(endDrag);
+
+        function startDrag(evt) {
+            console.log('startDrag',evt.target);
+        }
+
+        function drag(evt) {
+            console.log('drag',evt.target);
+
+        }
+
+        function endDrag(evt) {
+            console.log('endDrag');
+            selectedElement = null;
+        }
+
+    }
+
+    makeDraggable();
 
 });

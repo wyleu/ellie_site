@@ -27,3 +27,9 @@ def detail(request, dog_id):
         'detail.html',
         {'dog': dog}
     )
+
+def cup(request):
+    return render(
+        request,
+        'cup-animation.html'
+    )
