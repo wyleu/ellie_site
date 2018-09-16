@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'dog',
     'things',
     'channels',
-    'chat'1
+    'chat'
 ]
 
 MIDDLEWARE = [
