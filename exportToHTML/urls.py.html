@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>urls.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #008080; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+urls.py</font>
+</center></td></tr></table>
+<pre><span class="s0">from </span>django.urls <span class="s0">import </span>path
+
+<span class="s0">from </span>. <span class="s0">import </span>views
+
+urlpatterns = [
+    path(<span class="s2">''</span>, views.index, name=<span class="s2">'index'</span>),
+    path(<span class="s2">'&lt;int:dog_id&gt;/'</span>, views.detail, name=<span class="s2">'detail'</span>),
+]</pre>
+</body>
+</html>
