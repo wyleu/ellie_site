@@ -1,5 +1,31 @@
 $(document).ready(function() {
     console.log('Code from main');
+
+
+    if (navigator.requestMIDIAccess) {
+        console.log('This browser supports WebMIDI!');
+    } else {
+        console.log('WebMIDI is not supported in this browser.');
+    }
+
+
+    navigator.requestMIDIAccess()
+    .then(onMIDISuccess, onMIDIFailure);
+
+    function onMIDISuccess(midiAccess) {
+        console.log(midiAccess);
+
+        var inputs = midiAccess.inputs;
+        var outputs = midiAccess.outputs;
+    }
+
+
+    function onMIDIFailure() {
+        console.log('Could not access your MIDI devices.');
+    }
+
+
+
     let s = Snap("#svg");
     let background = s.rect(0,0,620,300);
 // Circle with 80px radius
@@ -81,9 +107,9 @@ $(document).ready(function() {
             }
         );
     }
-    // circle.mouseover(circ_jump);
-    // square.mouseover(sqr_rotate);
-    // ellipse.mouseover(tri_scale);
+    circle.mouseover(circ_jump);
+    square.mouseover(sqr_rotate);
+    ellipse.mouseover(tri_scale);
 
     function makeDraggable(evt) {
 

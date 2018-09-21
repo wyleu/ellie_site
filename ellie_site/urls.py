@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('dogs/', include('dog.urls')),
     path('chat/', include('chat.urls')),
+    path('midi/', include('midi.urls')),
     path('admin/', admin.site.urls),
 
 ]+ static(settings.STATIC_URL,
