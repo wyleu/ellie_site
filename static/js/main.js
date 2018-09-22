@@ -1,6 +1,15 @@
 $(document).ready(function() {
     console.log('Code from main');
 
+    var log = console.log.bind(console);
+
+    var keyData = document.getElementById('key_data');
+    var deviceInfoInputs = document.getElementById('inputs');
+    var deviceInfoOutputs = document.getElementById('outputs');
+    var midi;
+    var midi_status = true;
+
+
     if (navigator.requestMIDIAccess) {
         console.log('This browser supports WebMIDI!');
     } else {
@@ -10,6 +19,37 @@ $(document).ready(function() {
 
     navigator.requestMIDIAccess()
     .then(onMIDISuccess, onMIDIFailure);
+
+
+        // MIDI utility functions
+    function showMIDIPorts(midiAccess){
+        var inputs = midiAccess.inputs,
+                outputs = midiAccess.outputs,
+                html;
+        html = '<h4>MIDI Inputs:</h4><div class="info">';
+        inputs.forEach(function(port){
+            html += '<p>' + port.name + '<p>';
+            html += '<p class="small">connection: ' + port.connection + '</p>';
+            html += '<p class="small">state: ' + port.state + '</p>';
+            html += '<p class="small">manufacturer: ' + port.manufacturer + '</p>';
+            if(port.version){
+                html += '<p class="small">version: ' + port.version + '</p>';
+            }
+        });
+        deviceInfoInputs.innerHTML = html + '</div>';
+
+        html = '<h4>MIDI Outputs:</h4><div class="info">';
+        outputs.forEach(function(port){
+            html += '<p>' + port.name + '<br>';
+            html += '<p class="small">manufacturer: ' + port.manufacturer + '</p>';
+            if(port.version){
+                html += '<p class="small">version: ' + port.version + '</p>';
+            }
+        });
+        deviceInfoOutputs.innerHTML = html + '</div>';
+    }
+
+
 
     function onMIDISuccess(midiAccess){
         midi = midiAccess;
@@ -29,6 +69,58 @@ $(document).ready(function() {
 
     function onMIDIFailure() {
         console.log('Could not access your MIDI devices.');
+    }
+
+    function onStateChange(event){
+        showMIDIPorts(midi);
+        var port = event.port, state = port.state, name = port.name, type = port.type;
+        if(type == "input")
+            log("name", name, "port", port, "state", state);
+
+    }
+
+    function listInputs(inputs){
+        var input = inputs.value;
+            log("Input port : [ type:'" + input.type + "' id: '" + input.id +
+                    "' manufacturer: '" + input.manufacturer + "' name: '" + input.name +
+                    "' version: '" + input.version + "']");
+    }
+
+    function onMIDIMessage(event){
+    data = event.data,
+    cmd = data[0] >> 4,
+    channel = data[0] & 0xf,
+    type = data[0] & 0xf0, // channel agnostic message type. Thanks, Phil Burk.
+    note = data[1],
+    velocity = data[2];
+
+    // with pressure and tilt off
+    // note off: 128, cmd: 8
+    // note on: 144, cmd: 9
+    // pressure / tilt on
+    // pressure: 176, cmd 11:
+    // bend: 224, cmd: 14
+    if(midi_status) {
+        $('#midi_status').hide();
+        midi_status = false;
+    }
+    else{
+        $('#midi_status').show();
+        midi_status = true;
+    }
+
+    log('MIDI data', data);
+    switch(type){
+        case 144: // noteOn message
+            noteOn(note, velocity);
+            break;
+        case 128: // noteOff message
+            noteOff(note, velocity);
+            break;
+        }
+
+        //log('data', data, 'cmd', cmd, 'channel', channel);
+        logger(keyData, 'key data', data);
     }
 
 
@@ -154,31 +246,5 @@ $(document).ready(function() {
     makeDraggable();
 
 
-    function onMIDIMessage(event){
-    data = event.data,
-    cmd = data[0] >> 4,
-    channel = data[0] & 0xf,
-    type = data[0] & 0xf0, // channel agnostic message type. Thanks, Phil Burk.
-    note = data[1],
-    velocity = data[2];
-    // with pressure and tilt off
-    // note off: 128, cmd: 8
-    // note on: 144, cmd: 9
-    // pressure / tilt on
-    // pressure: 176, cmd 11:
-    // bend: 224, cmd: 14
-    log('MIDI data', data);
-    switch(type){
-        case 144: // noteOn message
-            noteOn(note, velocity);
-            break;
-        case 128: // noteOff message
-            noteOff(note, velocity);
-            break;
-        }
-
-        //log('data', data, 'cmd', cmd, 'channel', channel);
-        logger(keyData, 'key data', data);
-    }
 
 });
