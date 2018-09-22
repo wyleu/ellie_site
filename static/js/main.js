@@ -1,7 +1,6 @@
 $(document).ready(function() {
     console.log('Code from main');
 
-
     if (navigator.requestMIDIAccess) {
         console.log('This browser supports WebMIDI!');
     } else {

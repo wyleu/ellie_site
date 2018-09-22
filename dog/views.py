@@ -20,13 +20,14 @@ def detail(request, dog_id):
     try:
         dog = Dog.objects.get(pk=dog_id)
     except Dog.DoesNotExist:
-        raise Http404('Dog does npt exist')
+        raise Http404('Dog does not exist')
 
     return render(
         request,
         'detail.html',
         {'dog': dog}
     )
+
 
 def cup(request):
     return render(

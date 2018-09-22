@@ -1,5 +1,15 @@
 {% extends "base.html" %}
 {% block title %}{{ dog.name }}{% endblock %}
+
+{% block midi %}
+{% endblock midi %}
+
 {% block content %}
     <h1>{{ dog.name }}</h1>
 {% endblock content %}
+
+{% block graphic %}
+    <div>
+        <svg id="svg" viewBox="0 0 620 300"></svg>
+    </div>
+{% endblock graphic %}

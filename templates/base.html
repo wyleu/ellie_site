@@ -10,11 +10,22 @@
 </head>
 
 <body>
-    <h2 title="Ellies page of dog details">Dog stuff</h2>
-    <div id="content">
-        {% block content %}{% endblock %}
+    <span width="50%">
+        <h2 title="Ellies page of dog details">Dog stuff</h2>
+    </span>
+    <div
+        id="content"
+        width=50%"
+    >
+        {% block content %}
+
+        {% endblock content %}
     </div>
-    <svg id="svg" viewBox="0 0 620 300"></svg>
+    <div id="graphic">
+        {%  block graphic %}
+
+        {% endblock graphic %}
+    </div>
 </body>
 
 </html>
