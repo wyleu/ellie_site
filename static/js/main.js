@@ -3,6 +3,8 @@ $(document).ready(function() {
 
     var log = console.log.bind(console);
 
+    let s = Snap("#svg");
+
     var keyData = document.getElementById('key_data');
     var deviceInfoInputs = document.getElementById('inputs');
     var deviceInfoOutputs = document.getElementById('outputs');
@@ -124,7 +126,36 @@ $(document).ready(function() {
     }
 
 
-    let s = Snap("#svg");
+    function noteOn(note, velocity){
+        logger(note, velocity, 4);
+        moveSection(image_group, 50, 20);
+
+    //     image_group.animate({ transform: 'rotate(-10 50 100)\n' +
+    //             '                translate(-36 45.5)\n' +
+    //             '                skewX(40)\n' +
+    //             '                scale(1 0.5)' }, 1000)
+    }
+
+    function noteOff(note, velocity){
+        null;
+    }
+
+    function moveSection(idStr, xOffset, yOffset) {
+        var domElemnt = document.getElementById(idStr);
+        if (idStr) {
+            var transformAttr = ' translate(' + xOffset + ',' + yOffset + ')';
+            idStr.transform(transformAttr);
+        }
+    }
+
+
+
+    function logger(container, label, data){
+        messages = label + " [channel: " + (data[0] & 0xf) + ", cmd: " + (data[0] >> 4) + ", type: " + (data[0] & 0xf0) + " , note: " + data[1] + " , velocity: " + data[2] + "]";
+        container.textContent = messages;
+    }
+
+
 
     let background = s.rect(0,0,620,300);
 // Circle with 80px radius
@@ -141,7 +172,7 @@ $(document).ready(function() {
     let image_group = s.group()
 
 
-    Snap.load("/static/svg/akai-svg-image-2.svg", onSVGLoaded ) ;
+    Snap.load("/static/svg/rgb_thing.svg", onSVGLoaded ) ;
 
     function onSVGLoaded( data ){
         image_group.append( data );
