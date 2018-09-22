@@ -138,14 +138,16 @@ $(document).ready(function() {
 
     let selectedElement = false;
 
+    let image_group = s.group()
+
 
     Snap.load("/static/svg/akai-svg-image-2.svg", onSVGLoaded ) ;
 
     function onSVGLoaded( data ){
-        s.append( data );
+        image_group.append( data );
     }
 
-
+    image_group.animate({ transform: 's1.5,1.5' }, 1000)
 
 
     background.attr({
