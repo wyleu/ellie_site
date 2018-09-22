@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8"/>
     <title>{% block title %}My amazing site{% endblock %}</title>
     <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
     <script src="{% static "js/snap.svg.js" %}"></script>
@@ -20,8 +21,8 @@
         {% endblock content %}
     </div>
     <div id="graphic">
-        {%  block graphic %}
-
+        {% block graphic %}
+                GRAPHIC
         {% endblock graphic %}
     </div>
 </body>

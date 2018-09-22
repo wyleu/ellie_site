@@ -1,11 +1,9 @@
+{% extends "base.html" %}
 <!-- chat/templates/chat/index.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>Chat Rooms</title>
-</head>
-<body>
+{% load static %}
+
+{% block title %}Chat Rooms{% endblock title %}
+{%  block content %}
     What chat room would you like to enter?<br/>
     <input id="room-name-input" type="text" size="100"/><br/>
     <input id="room-name-submit" type="button" value="Enter"/>
@@ -23,5 +21,18 @@
             window.location.pathname = '/chat/' + roomName + '/';
         };
     </script>
-</body>
-</html>
+{% endblock content %}
+
+
+{% block graphic %}
+    <div style="border: thin solid black">
+        <svg
+            id="svg2"
+            viewBox="0 0 100 100"
+            height="200"
+            width="200"
+        >
+            <image x="0" y="0" height="60" width="60"  xlink:href="{% static 'svg/akai-svg-image-2.svg' %}" />
+        </svg>
+    </div>
+{% endblock graphic %}
