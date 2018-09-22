@@ -11,21 +11,29 @@ $(document).ready(function() {
     navigator.requestMIDIAccess()
     .then(onMIDISuccess, onMIDIFailure);
 
-    function onMIDISuccess(midiAccess) {
-        console.log(midiAccess);
+    function onMIDISuccess(midiAccess){
+        midi = midiAccess;
+        var inputs = midi.inputs.values();
+        // loop through all inputs
+        for(var input = inputs.next(); input && !input.done; input = inputs.next()){
+            // listen for midi messages
+            input.value.onmidimessage = onMIDIMessage;
 
-        var inputs = midiAccess.inputs;
-        var outputs = midiAccess.outputs;
+            listInputs(input);
+        }
+        // listen for connect/disconnect message
+        midi.onstatechange = onStateChange;
+
+        showMIDIPorts(midi);
     }
-
 
     function onMIDIFailure() {
         console.log('Could not access your MIDI devices.');
     }
 
 
-
     let s = Snap("#svg");
+
     let background = s.rect(0,0,620,300);
 // Circle with 80px radius
     let circle = s.circle(90, 120, 80);
@@ -37,6 +45,16 @@ $(document).ready(function() {
     let f = s.filter(Snap.filter.shadow(5,10,.3));
 
     let selectedElement = false;
+
+
+    Snap.load("/static/svg/akai-svg-image-2.svg", onSVGLoaded ) ;
+
+    function onSVGLoaded( data ){
+        s.append( data );
+    }
+
+
+
 
     background.attr({
         fill: g
@@ -134,5 +152,33 @@ $(document).ready(function() {
     }
 
     makeDraggable();
+
+
+    function onMIDIMessage(event){
+    data = event.data,
+    cmd = data[0] >> 4,
+    channel = data[0] & 0xf,
+    type = data[0] & 0xf0, // channel agnostic message type. Thanks, Phil Burk.
+    note = data[1],
+    velocity = data[2];
+    // with pressure and tilt off
+    // note off: 128, cmd: 8
+    // note on: 144, cmd: 9
+    // pressure / tilt on
+    // pressure: 176, cmd 11:
+    // bend: 224, cmd: 14
+    log('MIDI data', data);
+    switch(type){
+        case 144: // noteOn message
+            noteOn(note, velocity);
+            break;
+        case 128: // noteOff message
+            noteOff(note, velocity);
+            break;
+        }
+
+        //log('data', data, 'cmd', cmd, 'channel', channel);
+        logger(keyData, 'key data', data);
+    }
 
 });

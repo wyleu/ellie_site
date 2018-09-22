@@ -5,7 +5,7 @@ import json
 
 
 def index(request):
-    return render(request, 'chat/index.html', {})
+    return render(request, 'chat/roomname.html', {})
 
 
 def room(request, room_name):
