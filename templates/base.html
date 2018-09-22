@@ -7,16 +7,14 @@
     <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
     <script src="{% static "js/snap.svg.js" %}"></script>
     <script src="{% static "js/main.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" media="screen" />
 </head>
 
 <body>
-    <span width="50%">
+    <div>
         <h2 title="Ellies page of dog details">Dog stuff</h2>
-    </span>
-    <div
-        id="content"
-        width=50%"
-    >
+    </div>
+    <div>
         {% block content %}
 
         {% endblock content %}
