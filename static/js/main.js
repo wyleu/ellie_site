@@ -3,7 +3,7 @@ $(document).ready(function() {
 
     var log = console.log.bind(console);
 
-    let s = Snap("#svg");
+    var s = Snap("#svg");
 
     var keyData = document.getElementById('key_data');
     var deviceInfoInputs = document.getElementById('inputs');
@@ -128,6 +128,7 @@ $(document).ready(function() {
 
     function noteOn(note, velocity){
         logger(note, velocity, 4);
+        console.log('Image Group:-',image_group);
         moveSection(image_group, 50, 20);
 
     //     image_group.animate({ transform: 'rotate(-10 50 100)\n' +
@@ -143,8 +144,9 @@ $(document).ready(function() {
     function moveSection(idStr, xOffset, yOffset) {
         var domElemnt = document.getElementById(idStr);
         if (idStr) {
-            var transformAttr = ' translate(' + xOffset + ',' + yOffset + ')';
-            idStr.transform(transformAttr);
+            //var transformAttr = ''{t' + xOffset + ',' + yOffset
+            console.log('about to transform . . . .');
+            idStr.transform('t50,50');
         }
     }
 
@@ -170,8 +172,12 @@ $(document).ready(function() {
     let selectedElement = false;
 
     let image_group = s.group()
+    let three_group = s.group()
 
-
+    three_group.append(background);
+    three_group.append(circle);
+    three_group.append(ellipse);
+    three_group.append(square);
     Snap.load("/static/svg/rgb_thing.svg", onSVGLoaded ) ;
 
     function onSVGLoaded( data ){
@@ -179,6 +185,7 @@ $(document).ready(function() {
     }
 
     image_group.animate({ transform: 's1.5,1.5' }, 1000)
+    image_group.drag()
 
 
     background.attr({
@@ -252,6 +259,8 @@ $(document).ready(function() {
     circle.mouseover(circ_jump);
     square.mouseover(sqr_rotate);
     ellipse.mouseover(tri_scale);
+
+    three_group.drag()
 
     function makeDraggable(evt) {
 
