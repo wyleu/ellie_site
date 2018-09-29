@@ -1,0 +1,26 @@
+#container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  div{
+    padding:1em;
+  }
+}
+
+svg {
+  stroke: #ccc;
+  border: 1px dashed #ccc;
+  fill: none;
+  stroke-width: 20;
+  margin: 0 auto;
+}
+ul{
+  color: #777;
+}
+svg path{
+  stroke: purple;
+  fill: none;
+  stroke-width: 20;
+  stroke-linecap: round;
+}
