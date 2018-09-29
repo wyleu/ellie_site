@@ -1,13 +1,13 @@
-var canvasSize = 200,
-    centre = canvasSize/2,
-    radius = canvasSize*0.9/2,
-    s = Snap('#track'),
-    path = "",
-    arc = s.path(path),
-    circ1 = ('#text1'),
-    startY = centre-radius,
-    runBtn = document.getElementById('run-button'),
-    audio = document.getElementById('audio-file');
+// var canvasSize = 200,
+//     centre = canvasSize/2,
+//     radius = canvasSize*0.9/2,
+//     s = Snap('#track'),
+//     path = "",
+//     arc = s.path(path),
+//     circ1 = ('#text1'),
+//     startY = centre-radius,
+//     runBtn = document.getElementById('run-button'),
+//     audio = document.getElementById('audio-file');
 
 //When "Play" is clicked run the playPause functions
 

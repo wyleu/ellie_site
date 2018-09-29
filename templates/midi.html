@@ -121,12 +121,17 @@
 	<script>
 	//http://stackoverflow.com/questions/23687635/how-to-stop-audio-in-an-iframe-using-web-audio-api-after-hiding-its-container-di
 	(function(){
-		var log = console.log.bind(console), keyData = document.getElementById('key_data'), 
-				deviceInfoInputs = document.getElementById('inputs'), deviceInfoOutputs = document.getElementById('outputs'), midi;
+		var log = console.log.bind(console),
+            keyData = document.getElementById('key_data'),
+            deviceInfoInputs = document.getElementById('inputs'),
+            deviceInfoOutputs = document.getElementById('outputs'),
+            midi;
 		// var AudioContext = AudioContext || webkitAudioContext; // for ios/safari
+
 		var context = new AudioContext();
 		var activeNotes = [];
-		var btnBox = document.getElementById('content'), btn = document.getElementsByClassName('button');
+		var btnBox = document.getElementById('content');
+        var btn = document.getElementsByClassName('button');
 		var data, cmd, channel, type, note, velocity;
 
 		// request MIDI access

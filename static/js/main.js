@@ -3,6 +3,20 @@ $(document).ready(function() {
 
     var log = console.log.bind(console);
 
+    var canvasSize = 200,
+    centre = canvasSize/2,
+    radius = canvasSize*0.9/2,
+    s_audio = Snap('#track'),
+    path = "",
+    arc = s.path(path),
+    circ1 = ('#text1'),
+    startY = centre-radius,
+    runBtn = document.getElementById('run-button'),
+    audio = document.getElementById('audio-file');
+
+//When "Play" is clicked run the playPause functions
+
+
     var s = Snap("#svg");
 
     var keyData = document.getElementById('key_data');

@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>{% block title %}Base Object{% endblock %}</title>
+    <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "js/snap.svg.js" %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/object.css' %}" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" media="screen" />
+
+</head>
+
+
+<body>
+
+    {%  block svg %}
+        <svg id="svg" height="200" width="200" viewBox="0 0 200 200">
+        </svg>
+    {%  endblock svg %}
+
+    {%  block snapsvg %}
+    {%  endblock snapsvg %}
+
+    {%  block midi %}
+    <div>
+        <svg height="200" width="200" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="80" stroke="black" stroke-width="10" fill="red" />
+        </svg>
+    </div>
+    {%  endblock midi %}
+    {%  block audio %}
+    {%  endblock audio %}
+</body>
