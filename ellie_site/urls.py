@@ -23,6 +23,7 @@ urlpatterns = [
     path('', baseobject, name='baseobject'),
     path('dogs/', include('dog.urls')),
     path('chat/', include('chat.urls')),
+    path('charge/', include('charge.urls')),
     path('sound/', include('sound.urls')),
     path('midi/', include('midi.urls')),
     path('admin/', admin.site.urls),
