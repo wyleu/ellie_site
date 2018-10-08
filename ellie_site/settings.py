@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'dog',
     'things',
     'midi',
-    'snap'
+    'snap',
+    'front'
 ]
 
 MIDDLEWARE = [
