@@ -48,7 +48,10 @@ INSTALLED_APPS = [
     'things',
     'midi',
     'snap',
-    'front'
+    'front',
+    'audio',
+    'boris',
+    'people'
 ]
 
 MIDDLEWARE = [

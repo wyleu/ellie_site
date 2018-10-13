@@ -22,6 +22,7 @@ from views import baseobject, testobject
 urlpatterns = [
     path('', baseobject, name='baseobject'),
     path('dogs/', include('dog.urls')),
+    path('boris/', include('boris.urls')),
     path('front/', include('front.urls')),
     path('chat/', include('chat.urls')),
     path('charge/', include('charge.urls')),
